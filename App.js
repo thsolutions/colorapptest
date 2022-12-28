@@ -1,12 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,89 +9,80 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  TouchableHighlight,
+  TouchableOpacity,
+  Pressable
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const colours = {
+  red: '#FF0000',
+  blue: '#00C2FF',
+  green: '#00A110',
+  yellow: '#B0B400',
+}
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+ 
+  const [currentcolor, setCurrentcolor] = useState(colours.red);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+  const onPress = () => setCurrentcolor(colours.red);
+  const omprakash = () => setCurrentcolor(colours.green);
+  const hemanth = () => setCurrentcolor(colours.yellow);
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView>
+        <View style={styles.sectionContainer}>
+          <View style={[styles.rectangle,{backgroundColor: currentcolor}]}>
+          </View>
+          <Button
+        title="Blue"
+        color= {colours.blue}
+        onPress={() => setCurrentcolor(colours.blue)}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onPress}
+      >
+        <Text style={styles.text}>Red</Text>
+      </TouchableOpacity>
+
+      <TouchableHighlight onPress={omprakash}>
+        <View style={styles.button1}>
+          <Text style={styles.text1}>Green</Text>
         </View>
-      </ScrollView>
+      </TouchableHighlight>
+      <Pressable onPress={hemanth}>
+      <View style={styles.button2}>
+          <Text style={styles.text2}>Yellow</Text>
+        </View>
+      </Pressable>
+        </View>
+     
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    width: "100%",
+    height: "100%",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    
+  },
+  rectangle: {
+    marginTop: "20%",
+    width: "80%",
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  rectangle2: {
+    backgroundColor: 'blue',
+    width: "50%",
+    height: "50%",
+    zIndex: 999,
   },
   sectionTitle: {
     fontSize: 24,
@@ -112,6 +96,42 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  button:{
+    
+      alignItems: "center",
+      backgroundColor: colours.red,
+      padding: 10,
+      
+  
+  },
+  text:{
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  button1:{
+    
+    alignItems: "center",
+    backgroundColor: colours.green,
+    padding: 10,
+    
+
+},
+text1:{
+  color: 'white',
+  fontWeight: 'bold',
+},
+button2:{
+    
+  alignItems: "center",
+  backgroundColor: colours.yellow,
+  padding: 10,
+  
+
+},
+text2:{
+color: 'white',
+fontWeight: 'bold',
+},
 });
 
 export default App;
