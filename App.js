@@ -28,6 +28,7 @@ const App: () => Node = () => {
   const [currentcolor, setCurrentcolor] = useState(colours.red);
 
   const onPress = () => setCurrentcolor(colours.red);
+  const onPress1 = () => setCurrentcolor(colours.blue);
   const omprakash = () => setCurrentcolor(colours.green);
   const hemanth = () => setCurrentcolor(colours.yellow);
   return (
@@ -35,19 +36,20 @@ const App: () => Node = () => {
         <View style={styles.sectionContainer}>
           <View style={[styles.rectangle,{backgroundColor: currentcolor}]}>
           </View>
-          <Button
-        title="Blue"
-        color= {colours.blue}
-        onPress={() => setCurrentcolor(colours.blue)}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={onPress}
+          <View style={styles.row1}>
+          <TouchableOpacity onPress={onPress1}
       >
-        <Text style={styles.text}>Red</Text>
+        <View style={styles.button4}>
+        <Text style={styles.text}>Blue</Text></View>
       </TouchableOpacity>
-
-      <TouchableHighlight onPress={omprakash}>
+      <TouchableOpacity onPress={onPress}
+      >
+        <View style={styles.button}>
+        <Text style={styles.text}>Red</Text></View>
+      </TouchableOpacity>
+      </View>
+      <View style={styles.row2}>
+      <TouchableHighlight onPress={omprakash} underlayColor="green" style={styles.th} >
         <View style={styles.button1}>
           <Text style={styles.text1}>Green</Text>
         </View>
@@ -57,6 +59,7 @@ const App: () => Node = () => {
           <Text style={styles.text2}>Yellow</Text>
         </View>
       </Pressable>
+      </View>
         </View>
      
     </SafeAreaView>
@@ -71,18 +74,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     
   },
+  row1:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: "100%",
+     marginVertical: "10%",},
+    row2:{
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      width: "100%",
+      marginVertical: "10%",},
+
   rectangle: {
     marginTop: "20%",
     width: "80%",
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  rectangle2: {
-    backgroundColor: 'blue',
-    width: "50%",
-    height: "50%",
-    zIndex: 999,
+    marginBottom: "30%",
   },
   sectionTitle: {
     fontSize: 24,
@@ -96,24 +107,24 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  th: {
+borderRadius: 10,
+  },
   button:{
-    
       alignItems: "center",
       backgroundColor: colours.red,
-      padding: 10,
-      
-  
+      padding: "12%",
+      borderRadius: 10,
   },
   text:{
     color: 'white',
     fontWeight: 'bold',
   },
   button1:{
-    
     alignItems: "center",
     backgroundColor: colours.green,
-    padding: 10,
-    
+    padding: "12%",
+    borderRadius: 10,
 
 },
 text1:{
@@ -121,12 +132,16 @@ text1:{
   fontWeight: 'bold',
 },
 button2:{
-    
   alignItems: "center",
   backgroundColor: colours.yellow,
-  padding: 10,
-  
-
+  padding: "12%",
+  borderRadius: 10,
+},
+button4:{
+  alignItems: "center",
+  backgroundColor: colours.blue,
+  padding: "12%",
+  borderRadius: 10,
 },
 text2:{
 color: 'white',
